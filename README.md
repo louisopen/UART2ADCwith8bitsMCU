@@ -24,8 +24,8 @@ Useing HT66F318 UART access to GPIO, LED matrix, EEPROM, ADC, I2C...(Same RS-485
 * UART Formate(Get from MCU): 44 03 00 00 00 04 A0 0A   #讀取EEPROM位址0x0000,4組(共計8個bytes)
 MCU return設計最大每次讀取四組(8byte) 所以反饋時: 44 03 08 00 01 02 03 04 05 06 07 CRC CRC
 
-* UART Formate(Get from MCU): 44 03 01 00 00 01 A0 0A   #讀取ADC通道0,1組(共計2個bytes), 有8通道可以讀取(an0~an7)
-MCU return adc value (an0~an7): 44 03 02 03 FF CRC CRC
+* UART Formate(Get from MCU): 44 03 01 00 00 01 A0 0A   #讀取ADC通道0,1組(共計2個bytes), 有8通道可以讀取(an0 to an7)
+MCU return adc value (an0 to an7): 44 03 02 03 FF CRC CRC
 
 * UART Formate(Write to MCU): 44 06 00 0A EE FF A0 0A   #寫入EEPROM位址0x000A,資料為0xEEFF
 MCU return: 44 06 00 0A EE FF CRC CRC
