@@ -13,31 +13,33 @@
 //___________________________________________________________________
 #include "common.h"
 
+unsigned char count_2sec;
+__byte_type	system_flag;
 
 //___________________________________________________________________
 //Function: Time base timer task process
 //   INPUT: 
 //	  NOTE:
 //___________________________________________________________________
-volatile unsigned char  count_2sec;
-volatile __byte_type	system_flag;
 void Task_500ms()
 {	//TimeBase0
-	if(TB0_int_flag==0) return;
+	if(TB1_int_flag==0) return;
+	TB1_int_flag=0;
 	count_2sec++;
 	if(count_2sec < 4) return;
 	count_2sec=0;
-	if(toggle_buzzer==0)
+	if(toggle_led==0)
 	{
-		toggle_buzzer=1;
-		_pb2=1;
+		toggle_led=1;
+		LED_slow=1;	//_pa0=1;
 	}
 	else
 	{
-		toggle_buzzer=0;
-		_pb2=0;
+		toggle_led=0;
+		LED_slow=0;	//_pa0=0;
 	}
 }
+
 //___________________________________________________________________
 //Function: Key scan process
 //   INPUT: 
@@ -47,9 +49,55 @@ void Key_Scan()
 {
 	//GCC_NOP();
 	_nop();
-	
-	
 }	
+
+//___________________________________________________________________
+//Function: MCU WDT復位初始化
+//   INPUT: 
+//  OUTPUT: 
+//	  NOTE: 
+//___________________________________________________________________
+void TimerInitial()
+{
+	//_tmpc = 0b00000000;			//binding IO output? (TP0 /TP1 /TP2)	
+	
+	//TimeModule0 can using STM 16bits(ht66f318) MuFunction0 ISR
+	_tm0c0 = 0b00000000; 		//fsys/4
+	_tm0c1 = 0xC1; 				//Compare with CCRA
+	_tm0al = 0x48; 				//CCRA比較值設置16bits(ht66f318)
+	_tm0ah = 0x01;				//3KHz for Buzzer
+	_tm0rp = 0x00;				//CCRP比較值只能設置高8bits(ht66f318)
+	_t0ae = 1;					//interrupt for CCRA
+	//_t0pe = 1;					//interrupt for CCRP
+	_mf0e = 1;					//Multifunction 0 interrupt enable
+	_t0on = 1;
+	/*
+	//TimeModule1 can using PTM 10bits (ht66f317,ht66f318) MuFunction1 ISR
+	_tm1c0 = 0B00010000;  	//0001 0000	Pause, TM Clock = fsys, PT1ON=Off state
+	_tm1c1 = 0B10101000;	//1010 1000 PWM_Mode, Active high, Non-invert,counter clear when comparator P match
+	_tm1al = 0x0C;				//CCRA比較值設置10bits
+	_tm1ah = 0x00;
+	_tm1rpl = 0x30;				//CCRP有10bit ht66f317/ht66f318
+	_tm1rph = 0x00;				//CCRPH只有2bit ht66f317/ht66f318
+	//_t1ae = 1;					//interrupt for CCRA
+	//_t1pe = 1;					//interrupt for CCRP
+	//_mf1e = 1;					//Multifunction 1 interrupt enable
+	_t1on = 1;				//_tm1c0.3
+	_t1cp = 1;				//enable PA7 TP1(TMPC.1=1) binding TM1 
+	*/	/*
+	//TimeModule2 can using CTM 16bits(ht66f318) MuFunction1 ISR
+	_tm2c0 = 0b00000000; 		//fsys/4
+	_tm2c1 = 0xC1; 				//Compare with CCRA
+	_tm2al = 0x48; 				//CCRA比較值設置16bits(ht66f318)
+	_tm2ah = 0x01;				//3KHz for Buzzer
+	_tm2rp = 0x00;				//CCRP比較值只能設置高8bits(ht66f318)
+	_t2ae = 1;					//interrupt for CCRA
+	//_t2pe = 1;					//interrupt for CCRP
+	_mf1e = 1;					//Multifunction 1 interrupt enable
+	_t2on = 1;
+	*/
+}
+
 //___________________________________________________________________
 //Function: MCU WDT復位初始化
 //   INPUT: 
@@ -63,23 +111,10 @@ void WDT_ResetInit()	//WDT 溢出復位
 	//Enable_ADC();
 		
  	//TimeBase
-	TimeBaseInitial();
-
-	//Timer0 Control off	
-	_tm0c0 = TM0C0_Default;
-	_tm0c1 = TM0C1_Default;
-	_tm0al = TM0AL_Default;	
-	_tm0ah = TM0AH_Default;
-	_tm0rp = TM0RP_Default;		//有8bit ht66f318, 16bit ht66f317
-	//Timer1 Control off
-	_tm1c0 = TM1C0_Default;
-	_tm1c1 = TM1C1_Default;
-	_tm1al = TM1AL_Default;	
-	_tm1ah = TM1AH_Default;
-	_tm1rpl = TM1RPL_Default;	//有10bit f317/f318
-	_tm1rph = TM1RPH_Default;	//有10bit f317/f318
-	//Timer2 Control off
-	//_tm2rp = TM2RP_Default;	//有8bit only for ht66f318		
+	TimeBase_init();
+ 	//Timer module
+	TimerInitial();
+	
   	_nop();
   	//_pgc0 = 0;
 	//_pg0 = 0;
@@ -92,7 +127,13 @@ void WDT_ResetInit()	//WDT 溢出復位
 //	  NOTE: 
 //___________________________________________________________________
 void PowerOn_Init() //power up or reset pin normal
-{
+{	
+	//First IO configration
+	_acerl = 0B00000001;	//define adc binding IO(IO被綁定在ADC)
+	_cpc = 0B00000000;		//CPC IO (比較器IO是綁定在OP)
+
+	Ram_Init();		//RAM clear all, first time power up.
+  	
   	SETHXT();	//fH source is external Hi speed
   	
 	//LVR low voltage reset select
@@ -103,10 +144,7 @@ void PowerOn_Init() //power up or reset pin normal
 	//WDT select
 	SETWDTtime8192ms();		//WDT timer enable.
 	
-	//GPIO control
-	WDT_ResetInit();
-	
-	//SAVE_REEPROM();	
+	//GET_EEPROM();	
 }
 //___________________________________________________________________
 //Function: Enter to HLAT mode
@@ -154,15 +192,14 @@ void ReadyToHalt()
 //___________________________________________________________________
 void GPIO_Init()
 {
-	/*
-	_pac = 0b11100111;
-	_papu = 0b11100111;	
-	_pawu = 0b00000000; 	//default is 0.
-	_pa = 0;
-	*/
-	_pbc = 0b11111011;		//pb0 for an0, pb2 for buzzer
-	_pbpu =   0b11111110;		
-	_pb =0;
+	_pac = 0b01111110;		//PA0 timer LED, PA7 binding TP1(TM1) Capture input
+	//_papu = 0b11111111;	
+	//_pawu = 0b00000000; 	//default is 0.
+	_pa = 0xff;
+
+	_pbc = 0b00000001;		//pb0 for an0, pb1 for Test, pb2 for buzzer, PB3(TP2) for PWM
+	//_pbpu =   0b11111110;		
+	_pb = 0x00;
 	/*
 	_pcc = 0xff;
 	_pcpu = 0b11111111;		

@@ -1,14 +1,18 @@
 ### UARTtoADCwith8bitsMCU
-HT-IDE3000 V7.99  HT66F317/HT66F318 28ssop
+HT-IDE3000 V8.02  HT66F317/HT66F318 28ssop
+
+Project Option¥i¿ï¾Ü:HXT,HIRC8M,HIRC12M,HIRC16M,LXT,LIRC 
 
 Useing HT66F318 UART access to GPIO, LED matrix, EEPROM, ADC, I2C...(Same RS-485 driver)
-æ­¤å°ˆæ¡ˆåˆ©ç”¨PCè»Ÿä»¶ä¸‹é”æŒ‡ä»¤ä»¥å­˜å–MCUå…§éƒ¨çš„EEPROM(64bytes), ADC(10bits), å¾Œé‚„å¯ä»¥æŒçºŒå¢åŠ I2C(Hi resolution adc), SPI(OLED display) éƒ½é€éUART 9600,N,8,1 å”è­°æ¯”ç…§RS-485é€šè¨Šå”è­°æ ¼å¼.
+¦¹±M®×§Q¥ÎPC³n¥ó¤U¹F«ü¥O¥H¦s¨úMCU¤º³¡ªºEEPROM(64bytes), ADC(10bits), «áÁÙ¥i¥H«ùÄò¼W¥[I2C(Hi resolution adc), SPI(OLED display) ³£³z¹LUART 9600,N,8,1 ¨óÄ³®æ¦¡°Ñ·ÓRS-485³q°T¨óÄ³®æ¦¡.
 
-* HT-IDE3000 V7.99
+ADC³]¸mª½±µ³z¹LAN0~AN7Åª¨ú¥~³¡¿é¤J,©ÎAVDD,AVDD1/2,AVDD1/4Åª¨ú¤º³¡¿é¤J.
+
+* HT-IDE3000 V8.02
 ![Image](HT-IDE3000_version.jpg)
 * HOLTEK C Compiler V3/Assembly
 ![Image](ProjectCompiler.jpg)
-* HT66F318 Config, used 8Mhz X'tal external, VDD/VDDA all 3.3V
+* HT66F318 Config, used 8Mhz X'tal external, VDD/VDDA binding
 ![Image](ProjectOption1.jpg)
 ![Image](ProjectOption2.jpg)
 ![Image](ProjectOption3.jpg)
@@ -18,17 +22,18 @@ Useing HT66F318 UART access to GPIO, LED matrix, EEPROM, ADC, I2C...(Same RS-485
 
 
 #### How to test or used:
-åˆ©ç”¨PCé€šè¨Šè»Ÿä»¶åšç‚ºä¸»å‹•å·¥å…·, å”è­°(9600,n,8,1), æ ¼å¼æ¯”ç…§RS-485æ ¼å¼(PCæŒ‡ä»¤CRCç”¨ A0 0Aä»£æ›¿, MCUåé¥‹çš„ç‚ºCRC-16)
+§Q¥ÎPC³q°T³n¥ó°µ¬°¥D°Ê¤u¨ã, ¨óÄ³(9600,n,8,1), ®æ¦¡¤ñ·ÓRS-485®æ¦¡(PC«ü¥OCRC¥Î A0 0A¥N´À, MCU¤ÏõXªº¬°CRC-16)
 
 * For Example: 
-* UART Formate(Get from MCU): 44 03 00 00 00 04 A0 0A   #è®€å–EEPROMä½å€0x0000,4çµ„(å…±è¨ˆ8å€‹bytes)
-MCU returnè¨­è¨ˆæœ€å¤§æ¯æ¬¡è®€å–å››çµ„(8byte) æ‰€ä»¥åé¥‹æ™‚: 44 03 08 00 01 02 03 04 05 06 07 CRC CRC
+* UART Formate(Get from MCU): 44 03 00 00 00 04 A0 0A   #Åª¨úEEPROM¦ì§}0x0000,4²Õ(¦@­p8­Óbytes)
+MCU return³]­p³Ì¤j¨C¦¸Åª¨ú¥|²Õ(8byte) ©Ò¥H¤ÏõX®É: 44 03 08 00 01 02 03 04 05 06 07 CRC CRC
 
-* UART Formate(Get from MCU): 44 03 01 00 00 01 A0 0A   #è®€å–ADCé€šé“0,1çµ„(å…±è¨ˆ2å€‹bytes), æœ‰8é€šé“å¯ä»¥è®€å–(an0 to an7)
+* UART Formate(Write to MCU): 44 06 00 0A EE FF A0 0A   #¼g¤JEEPROM¦ì§}0x000A,¸ê®Æ¬°0xEEFF
+MCU return: 44 06 00 0A EE FF CRC CRC
+
+* UART Formate(Get from MCU): 44 03 01 00 00 01 A0 0A   #Åª¨úADC³q¹D0,1²Õ(¦@­p2­Óbytes), ¦³8³q¹D¥i¥HÅª¨ú(an0 to an7)
 MCU return adc value (an0 to an7): 44 03 02 03 FF CRC CRC
 
-* UART Formate(Write to MCU): 44 06 00 0A EE FF A0 0A   #å¯«å…¥EEPROMä½å€0x000A,è³‡æ–™ç‚º0xEEFF
-MCU return: 44 06 00 0A EE FF CRC CRC
 
 #### Other applications:
 * UART access to ADC converter(HY3118 24bit ADC) via I2C bus.

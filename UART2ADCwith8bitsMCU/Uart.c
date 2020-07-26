@@ -33,15 +33,16 @@
 //#define		BRGData        				25		  //8Mhz  Baud=19200,BRGH=1,N=25 
 #define		BRGData        				51		  //8Mhz  Baud=9600,BRGH=1,N=51 
 
-u8	tx_index;
+unsigned char	tx_index;
 volatile	u8	rx_guide;
 volatile	u8	tx_guide;
 volatile	u8	array_uart_txbuff[TX_DATA_MAX];
 volatile	u8	array_uart_rxbuff[RX_DATA_MAX];
 volatile	__byte_type	uart_flag;	//bit operation
 
-u16 reg_crc;
-//u16 calc_crc(u8* pointer, u8 length);
+__16_type reg_crc;
+
+//u16 calc_crc(volatile u8* pointer, u8 length);
 
 //___________________________________________________________________
 //Function: UART initial
@@ -97,12 +98,12 @@ void Uart_off(void)
 //void UART_ISR(void)
 void __attribute((interrupt(0x2C)))  UART_ISR()		//for V3 of compiler
 {	
-	u8	isr_temp0;
 	//clear urf flag
 	if(_perr || _nf || _ferr || _oerr)	// error found?
 	{
 	   isr_temp0 = _usr;				//read USR to clear error flag 
-	   isr_temp0 = _txr_rxr;			//read USR to clear error flag 	   	       
+	   isr_temp0 = _txr_rxr;			//read USR to clear error flag
+	   rx_guide = 0; 	   	       
 	}
 	else	// no error found
 	{
@@ -179,31 +180,36 @@ void Uart_RXD_Manage(void)
 				case 0x02:	//if request: 44 02 00 01 00 01 A0 0A
 
 					break;
-				case 0x03:	//if request: 44 03 00 01 00 04 A0 0A 	ModBus Read
+				case 0x03:	//if request: 44 03 01 00 00 01 A0 0A 	ModBus Read ADC
 					if(array_uart_rxbuff[2]==0x01)	//ADC convert request
 					{
-						reg_crc = Get_ADC(array_uart_rxbuff[3]);	//Analog AN0~An7
-						array_uart_txbuff[3] = reg_crc/256;
-						array_uart_txbuff[4] = reg_crc%256;
-						Buffer_Send3(2);
+						reg_crc.u16 = Get_ADC(array_uart_rxbuff[3]);	//Analog AN0~An7
+						array_uart_txbuff[3] = reg_crc.u16/256;
+						array_uart_txbuff[4] = reg_crc.u16%256;
+						Buffer_Send03(2);
 					}
-					else
+					else	
 					{
+						//if request: 44 03 00 00 00 03 A0 0A 	ModBus Read EEPROM
 						//for(i=0;i<EEPROM_BUFFER_MAX;i++)
 						for(i=0;i<(array_uart_rxbuff[5]*2);i++)
 						{
 							array_uart_txbuff[i+3] = Read_EEPROM(array_uart_rxbuff[3]+i);
+							array_uart_txbuff[i+4] = Read_EEPROM(array_uart_rxbuff[3]+i+1);
+							i++;
 						}
-						Buffer_Send3(array_uart_rxbuff[5]*2);
+						Buffer_Send03(array_uart_rxbuff[5]*2);
 					}
 					break;				
-				case 0x06:	//if request: 44 06 00 01 00 01 A0 0A	ModBus Write
-					Write_EEPROM(array_uart_rxbuff[3],array_uart_rxbuff[5]);
+				case 0x06:
+					//if request: 44 06 00 00 EE FF A0 0A	ModBus Write EEPROM
+					Write_EEPROM(array_uart_rxbuff[3],array_uart_rxbuff[4]);
+					Write_EEPROM(array_uart_rxbuff[3]+1,array_uart_rxbuff[5]);
 					for(i=0;i<4;i++)
 					{
 						array_uart_txbuff[i+2] = array_uart_rxbuff[i+2];
 					}
-					Buffer_Send6(4);
+					Buffer_Send06(4);
 					break;							
 				default:	
 			
@@ -236,8 +242,8 @@ void Uart_TXD_Send(u16 tx_data)
 
 	calc_crc(array_uart_txbuff, 7);			//CRC-16 calculation in Modbus
 	
-	array_uart_txbuff[7]	= reg_crc%256;	//L byte in Modbus
-	array_uart_txbuff[8]	= reg_crc/256;	//H byte in Modbus
+	array_uart_txbuff[7]	= reg_crc.u16%256;	//L byte in Modbus
+	array_uart_txbuff[8]	= reg_crc.u16/256;	//H byte in Modbus
 
 	_txr_rxr = array_uart_txbuff[0];		//TXR data register is empty				
 	tx_guide--;
@@ -247,7 +253,7 @@ void Uart_TXD_Send(u16 tx_data)
 //   INPUT: function=6
 //	  NOTE: follow Modbus & CRC-16
 //___________________________________________________________________
-void Buffer_Send6(u8 count)
+void Buffer_Send06(u8 count)
 {
 	//u8 i;
 	if(count>TX_DATA_MAX-4) 
@@ -267,8 +273,8 @@ void Buffer_Send6(u8 count)
 
 	calc_crc(array_uart_txbuff, count+2);	//CRC-16 calculation in Modbus
 	
-	array_uart_txbuff[count+2]=reg_crc%256;	//L byte in Modbus
-	array_uart_txbuff[count+3]=reg_crc/256;	//H byte in Modbus
+	array_uart_txbuff[count+2]=reg_crc.u16%256;	//L byte in Modbus
+	array_uart_txbuff[count+3]=reg_crc.u16/256;	//H byte in Modbus
 		
 	_txr_rxr = array_uart_txbuff[0];	//TXR data register is empty				
 	tx_guide--;
@@ -278,7 +284,7 @@ void Buffer_Send6(u8 count)
 //   INPUT: function=3
 //	  NOTE: follow Modbus & CRC-16
 //___________________________________________________________________
-void Buffer_Send3(u8 count)
+void Buffer_Send03(u8 count)
 {
 	//u8 i;
 	if(count>TX_DATA_MAX-5) 
@@ -298,8 +304,8 @@ void Buffer_Send3(u8 count)
 
 	calc_crc(array_uart_txbuff, count+3);	//CRC-16 calculation in Modbus
 	
-	array_uart_txbuff[count+3]=reg_crc%256;	//L byte in Modbus
-	array_uart_txbuff[count+4]=reg_crc/256;	//H byte in Modbus
+	array_uart_txbuff[count+3]=reg_crc.u16%256;	//L byte in Modbus
+	array_uart_txbuff[count+4]=reg_crc.u16/256;	//H byte in Modbus
 		
 	_txr_rxr = array_uart_txbuff[0];	//TXR data register is empty				
 	tx_guide--;
@@ -309,28 +315,28 @@ void Buffer_Send3(u8 count)
 //   INPUT: buffer, number of counting
 //	  NOTE: also Modbus standar.
 //___________________________________________________________________
-u16 calc_crc(u8* pointer,u8 length)
+u16 calc_crc(volatile u8* pointer,u8 length)
 {
 	u8 i,j;
-	reg_crc = 0xFFFF;
+	reg_crc.u16 = 0xFFFF;
  	for (i = 0; i < length; i++) 
  	{
   		//reg_crc ^= array_uart_txbuff[i];	//array buffer		OK
   		//reg_crc ^= *(pointer+i);			//pointer buffer	OK
-  		reg_crc ^= *pointer++;				//pointer buffer	OK
+  		reg_crc.u16 ^= *pointer++;				//pointer buffer	OK
   		for (j = 0; j < 8; j++) 
   		{
-   			if (reg_crc & 1) 
+   			if (reg_crc.u16 & 1) 
    			{
-   				reg_crc = reg_crc >> 1;
-    			reg_crc ^= 0xA001;
+   				reg_crc.u16 = reg_crc.u16 >> 1;
+    			reg_crc.u16 ^= 0xA001;
    			}
    			else
    			{
-   				reg_crc = reg_crc >> 1;
+   				reg_crc.u16 = reg_crc.u16 >> 1;
    			}
   		}
  	}
- 	return reg_crc;
+ 	return reg_crc.u16;
  	//return ((reg_crc & 0xFF00) >> 8)|((reg_crc & 0x0FF) << 8 );	
 }

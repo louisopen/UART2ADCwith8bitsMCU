@@ -11,20 +11,27 @@
 //     History:
 //___________________________________________________________________
 //___________________________________________________________________
-#ifndef SYS_INIT_H_
-#define SYS_INIT_H_
+#ifndef _SYS_INIT_H_
+#define _SYS_INIT_H_
 
-extern volatile unsigned char  count_2sec;
-extern volatile	__byte_type	system_flag;
+#define Vbat_adc 	AN0		//binding _pb0 , AN0=0
+#define IO_test 	_pb1
+#define Buzzer	 	_pb2
+#define LED_fast 	_pb5	//LED flash fast
+#define PWMout		_pb3	//pb3 binding TP2(TM2) CTM already
+#define Capture		_pa7	//pa7 binding TP1(TM1) PTM already
+#define LED_slow 	_pa0	//pa0 not binding TP0(TM0) STM already
+
+extern unsigned char  	count_2sec;
+extern __byte_type		system_flag;
 #define toggle_led		system_flag.bits.b0
 #define toggle_buzzer	system_flag.bits.b1
 #define sleep_request	system_flag.bits.b2
 
-void PowerOn_Init();
-void WDT_ResetInit();
-void GPIO_Init();
-void Ram_Init();
-void PrepareToHalt();
+
+
+void PowerOn_Init(), WDT_ResetInit(), ReadyToHalt();
+void GPIO_Init(), Ram_Init(), Task_500ms(), Key_Scan();
 
 //___________________________________________________________________
 //___________________________________________________________________
@@ -64,11 +71,13 @@ void PrepareToHalt();
 //		1：fH
 #define SMOD_Default	0b11110011  
 
-#define SETHXT()	{_cks2 = 1;_cks1 = 1;_cks0 = 1;_fsten = 1;_idlen = 1;_hlclk = 1;}
-   
-//#define SETHIRC_8MHZ()	{_fhs = 0;_hirc1 = 0;_hirc0 = 0;_hircen = 1;}
-//#define SETHIRC_12MHZ()	{_fhs = 0;_hirc1 = 0;_hirc0 = 1;_hircen = 1;}
-//#define SETHIRC_16MHZ()	{_fhs = 0;_hirc1 = 1;_hirc0 = 0;_hircen = 1;}
+//#define SETHIRC_8MHZ()	{_cks2 = 1;_cks1 = 1;_cks0 = 1;_fsten = 1;_idlen = 1;_hlclk = 1;}
+//#define SETHIRC_12MHZ()	{_cks2 = 1;_cks1 = 1;_cks0 = 1;_fsten = 1;_idlen = 1;_hlclk = 1;}
+//#define SETHIRC_16MHZ()	{_cks2 = 1;_cks1 = 1;_cks0 = 1;_fsten = 1;_idlen = 1;_hlclk = 1;}
+#define SETHXT()		{_cks2 = 1;_cks1 = 1;_cks0 = 1;_fsten = 1;_idlen = 1;_hlclk = 1;}
+//#define SETHXT()		{_fsten = 1;_idlen = 1;_hlclk = 1;}
+//#define SETLIRC_32K()	{_cks0 = 0;_fsten = 1;_idlen = 1;_hlclk = 0;}
+//#define SETLXT_32768(){_cks0 = 1;_fsten = 1;_idlen = 1;_hlclk = 0;}
 
 
 //-------------WDT config---------------
@@ -116,14 +125,40 @@ void PrepareToHalt();
 //-------------EEPROM config------------
 //Setting in EEPROM.h
 
-//-------------IO config----------------
-//Setting in Target.h
-
 //-------------Timer config-------------
 //Setting in Timer.h
 
 
+//----------------TBC-------------------
+//  ______________________________________________________________________________
+// | Bit  |  Bit7  |  Bit6  |  Bit5  |  Bit4  |  Bit3  |  Bit2  |  Bit1  |  Bit0  |
+//  ______________________________________________________________________________
+// | Name |  TBON  |  TBCK  |  TB11  |  TB10  | LXTLP  |  TB02  |  TB01  |  TB00  |
+// |______________________________________________________________________________
+// | POR  |   0    |   0    |   1    |   1    |   0    |   1    |   1    |   1    |
+// |_______________________________________________________________________________
+// BIT 7  TBON:TB0和TB1控制位
+// 			0:  Disable
+//			1:  Enable
+// BIT 6  TBCK:選擇ftb時鐘位
+// 			0:  fsub
+//			1:  fsys/4
+// BIT 5~4  TB11~TB10:TimeBase"1"溢出週期
+// 			00:  2^12/ftb   01:  2^13/ftb
+//			10:  2^14/ftb   11:  2^15/ftb
+// BIT 3  LXTLP:LXT低功耗控制位
+// 			0:  快速啟動模式
+//			1:  低功耗模式
+// BIT 2~0  TB02~TB00：TimeBase"0"溢出週期
+// 			000:  2^8/ftb    001:  2^9/ftb    010:  2^10/ftb
+// 			011:  2^11/ftb   100:  2^12/ftb   101:  2^13/ftb
+// 			110:  2^14/ftb   111:  2^15/ftb
+#define TimeBase_500ms	0B10100110	//TimeBase0 0.5S, TimeBase1 0.5S
+#define TimeBase_1000ms	0B10110111	//TimeBase0 1.0S, TimeBase1 1.0S
+#define TimeBase_init()	{	_tbc=TimeBase_500ms; _tb1e=1;	}	//enable TB1 interrupt.
+//#define TimeBase_init()	{	_tbc=TimeBase_500ms; _tb0e=1; _tb1e=1;	}	//enable TB0/TB1 interrupt.
 
+//------------Timer module--------------
 //---------------PTMnC0-----------------
 //TMnC0 (PTM, n=0 or n=1) 10bit for HT66F317 & 10bit HT66F318
 //  ______________________________________________________________________________
@@ -148,8 +183,9 @@ void PrepareToHalt();
 // Bit 3 TnON: TMn Counter On/Off Control
 //			0: Off
 //			1: On
-#define TM0C0_Default	0b01000000  //fsub, off
-#define TM1C0_Default	0b01000000	//fsub, off
+#define TM0C0_Default	0b00110000  //fsub, off
+
+#define TM1C0_Default	0b00110000	//fsub, off
 
 //--------------PTMnC1------------------
 //TMnC1 (PTM, n=0 or n=1) for HT66F317 HT66F318
@@ -184,21 +220,16 @@ void PrepareToHalt();
 // BIT 0  TnCCLR:選擇TMn計數器清零條件位
 // 			0:  TMn比較器P匹配
 //			1:  TMn比較器A匹配
-#define TM0C1_Default	0x00	//working mode for PTM
-#define TM1C1_Default	0x00	//working mode for PTM
-#define TM0AL_Default		0x48	
-#define TM0AH_Default		0x1       	// =  = 10ms
-#define TM1AL_Default		0x48	
-#define TM1AH_Default		0x1       	// =  = 10ms
-#define TM0RP_Default		0x00		//8bit for ht66f318
-#define TM1RPL_Default		0x00		//10bit for ht66f317
-#define TM1RPH_Default		0x00
-//Other TM2 setting
-#define PTM0AL_Default		767%256	
-#define PTM0AH_Default		767/256    
-#define PTM1AL_Default		767%256	
-#define PTM1AH_Default		767/256	
+#define TM0C1_Default	0b11000001	//working mode for PTM
+#define TM0AL_Default	0x48		//CCRP CCRA 10bit
+#define TM0AH_Default	0x01       	//10ms
+#define TM0RP_Default	0x00		//hi 8bit for ht66f318
 
+#define TM1C1_Default	0b11000001	//working mode for PTM
+#define TM1AL_Default	0x48	
+#define TM1AH_Default	0x1       	//10ms
+#define TM1RPL_Default	0x00		//10bit for ht66f317 318
+#define TM1RPH_Default	0x00
 
 
 //---------------STMnC0-----------------
@@ -225,7 +256,7 @@ void PrepareToHalt();
 // Bit 3 TnON: TMn Counter On/Off Control
 //			0: Off
 //			1: On
-#define TM0C0_Default	0b01000000   //fsub,off
+//#define TM0C0_Default	0b00110000   //fsub,off
 
 //--------------STMnC1---------------
 //TMnC1 (STM, n=0) only for HT66F318
@@ -260,12 +291,10 @@ void PrepareToHalt();
 // BIT 0  TnCCLR:選擇TMn計數器清零條件位
 // 			0:  TMn比較器P匹配
 //			1:  TMn比較器A匹配
-#define TM0C1_Default	0x00	//STM mode
-//Other TM2 setting
-#define STM0A_MAX			1023      	
-#define STM0AL_Default		767%256	
-#define STM0AH_Default		767/256 
-#define STM0RP_Default		4       
+//#define TM0C1_Default	0b11000001	//STM mode
+//#define TM0AL_Default	0x48
+//#define TM0AH_Default	0x01
+//#define TM0RP_Default	0x00
 
 
 //--------------CTMnC0---------------
@@ -292,7 +321,7 @@ void PrepareToHalt();
 // Bit 3 TnON: TMn Counter On/Off Control
 //			0: Off
 //			1: On
-#define TM2C0_Default	0x00	//TM2 off
+#define TM2C0_Default	0b00100000	//TM2 off
 
 //------------TM2C1 16bit CTM-----------
 //TMnC1 (CTM, n=2) only for HT66F318
@@ -337,40 +366,50 @@ void PrepareToHalt();
 // Bit 0 TnCCLR: Select TMn Counter clear condition
 //			0: TMn Comparatror P match
 //			1: TMn Comparatror A match
-#define TM2C1_Default	0x00	//CTM mode
-#define TM2AL_Default	0x00
-#define TM2AH_Default	0x00
+#define TM2C1_Default	0xC1	//CTM mode
+#define TM2AL_Default	0x48
+#define TM2AH_Default	0x01
 #define TM2RP_Default	0x00
-//Other TM2 setting
-#define	SETPTM2_10MS()		{ _tm2c0 = 0b01000000; _tm2c1 = 0xC1; _tm2al = 0x48; _tm2ah = 0x1;}
+/*
+#define	TM0STM_10MS()	{ 	_tm0c0=TM0C0_Default;\
+							_tm0c1=TM0C1_Default;\ 
+							_tm0al=TM0AL_Default;\ 
+							_tm0ah=TM0AH_Default;\ 
+							_t0ae=1;\ 
+							_tm0rp=TM0RP_Default;\ 
+							_t0pe=0;\ 	
+						}
+*/
+/*												
+#define	TM0PTM_10MS()	{ 	_tm1c0=TM1C0_Default;\
+							_tm1c1=TM1C1_Default;\
+							_tm1al=TM1AL_Default;\ 
+							_tm1ah=TM1AH_Default;\
+							_t1ae=1;\
+							_tm1rpl=TM1RPL_Default;\
+							_tm1rph=TM1RPH_Default;\	
+							_t1pe=0;\	
+						}
+*/	
+/*				
+#define	TM1PTM_10MS()	{ 	_tm1c0=TM1C0_Default;\
+							_tm1c1=TM1C1_Default;\
+							_tm1al=TM1AL_Default;\ 
+							_tm1ah=TM1AH_Default;\
+							_t1ae=1;\
+							_tm1rpl=TM1RPL_Default;\
+							_tm1rph=TM1RPH_Default;\	
+							_t1pe=0;\	
+						}
 
-
-//----------------TBC-------------------
-//  ______________________________________________________________________________
-// | Bit  |  Bit7  |  Bit6  |  Bit5  |  Bit4  |  Bit3  |  Bit2  |  Bit1  |  Bit0  |
-//  ______________________________________________________________________________
-// | Name |  TBON  |  TBCK  |  TB11  |  TB10  | LXTLP  |  TB02  |  TB01  |  TB00  |
-// |______________________________________________________________________________
-// | POR  |   0    |   0    |   1    |   1    |   0    |   1    |   1    |   1    |
-// |_______________________________________________________________________________
-// BIT 7  TBON:TB0和TB1控制位
-// 			0:  Disable
-//			1:  Enable
-// BIT 6  TBCK:選擇ftb時鐘位
-// 			0:  fsub
-//			1:  fsys/4
-// BIT 5~4  TB11~TB10:TimeBase"1"溢出週期
-// 			00:  2^12/ftb   01:  2^13/ftb
-//			10:  2^14/ftb   11:  2^15/ftb
-// BIT 3  LXTLP:LXT低功耗控制位
-// 			0:  快速啟動模式
-//			1:  低功耗模式
-// BIT 2~0  TB02~TB00：TimeBase"0"溢出週期
-// 			000:  2^8/ftb    001:  2^9/ftb    010:  2^10/ftb
-// 			011:  2^11/ftb   100:  2^12/ftb   101:  2^13/ftb
-// 			110:  2^14/ftb   111:  2^15/ftb
-#define TimeBase_Default 	0B10110111	//TimeBase0 0.5S, TimeBase1 0.5S
-#define TimeBaseInitial()	{ _tbc=TimeBase_Default; _tb0e=1;	}	//enable TB0 interrupt.
-//#define TimeBaseInitial()	{ _tbc=TimeBase_Default; _tb0e=1; _tb1e=1; } //enable TB0,TB1 interrupt.		
+#define	TM2CTM_10MS()	{ 	_tm2c0=TM2C0_Default;\
+							_tm2c1=TM2C1_Default;\
+							_tm2al=TM2AL_Default;\
+							_tm2ah=TM2AH_Default;\
+							_t2ae=1;\
+							_tm2rp=TM2RP_Default;\
+							_t2pe=0;\	
+						}
+*/
 
 #endif

@@ -20,6 +20,6 @@
 #include "Sys_Init.h"
 #include "ADC.h"
 #include "Uart.h"
-#include "interrupt.h"
+#include "Interrupt.h"
 
 #endif

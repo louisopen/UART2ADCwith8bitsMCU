@@ -16,7 +16,7 @@
 
 #define	RX_DATA_MAX		8
 #define	TX_DATA_MAX		16
-//extern	volatile 	u8	tx_index;
+//extern	unsigned char 	tx_index;
 extern	volatile	u8	rx_guide;
 extern	volatile	u8	tx_guide;
 extern	volatile	u8	array_uart_txbuff[TX_DATA_MAX];
@@ -31,14 +31,15 @@ extern	volatile	__byte_type	uart_flag;
 //#define uart_flag6		uart_flag.bits.b6
 //#define uart_flag7		uart_flag.bits.b7
 
+extern 	u8	isr_temp0;
 //___________________________________________________________________
 //___________________________________________________________________
 void 	Uart_Init(void);
 void	Uart_off(void);
 void	Uart_RXD_Manage(void);
 void	Uart_TXD_Send(u16 tx_data);
-void	Buffer_Send3(u8 count), Buffer_Send6(u8 count);
-u16 calc_crc(u8* pointer, u8 length);
+void	Buffer_Send03(u8 count), Buffer_Send06(u8 count);
+u16 	calc_crc(volatile u8* pointer, u8 length);
 
 #endif
 

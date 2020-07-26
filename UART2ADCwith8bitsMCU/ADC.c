@@ -22,13 +22,20 @@
 u16 Get_ADC(u8 adc_channel)
 {
 	__16_type	adc_rdata;
-	
+	_ade = 0;				//Disable ADC interrupt
 	_sadc0 = 0B00110111;	//enable & format& channel selection
-	_sadc1 = 0B00100011;	//AVDD & clock source selection
+	if(adc_channel==8)
+	{
+		_sadc1 = 0B01000011;//AVDD/2 for input & clock source selection
+	}
+	else
+	{
+		_sadc1 = 0B00000011;//AN0~AN7 & clock source selection
+	}
 	_sadc2 = 0B00000000;	//ENOPA .. reference voltage selection
 	
-	_acerl = 0x00;		//Not used binding IO an0~an7 IO pin
-	//_acerl = 0x01;	//binding an0 IO pin
+	//_acerl = 0x00;		//Not used binding IO
+	_acerl = 0B00000001;	//binding IO  pb0,pb1,pb2,pa4,pa5,pa6,pa7,pb3 see you.
 	switch(adc_channel)
 	{
 		case 0:  _sadc0 &= 0xF8;  break;	//_acerl=0b00000001; pb0 an0
@@ -40,57 +47,21 @@ u16 Get_ADC(u8 adc_channel)
 		case 6:  _sadc0 &= 0xFe;  break;	//_acerl=0b01000000; pa7 an6			
 		case 7:  _sadc0 &= 0xFf;  break;	//_acerl=0b10000000; pb3 an7		
 	}
-	
-	_enadc = 1;		//ADC start convert
+	_enadc = 1;			//ADC enable convert
 	
 	GCC_DELAY(20);
-	_start = 0;		//_sadc0.7
-	_start = 1;		//_sadc0.7
-	_start = 0;		//_sadc0.7
-	while(_adbz != 0)	//_sadc0.6
+	_start = 0;			//_sadc0.7 start convert
+	_start = 1;			//_sadc0.7 start convert
+	_start = 0;			//_sadc0.7 start convert
+	//_ade=1;			//Interrupt enable
+	while(_adbz != 0)	//_sadc0.6 polling bit
 	{} 
-	
 	adc_rdata.byte.byte0 = _sadol;
 	adc_rdata.byte.byte1 = _sadoh;
-	_start = 0;		//_sadc0.7
-	_start = 0;		//_sadc0.7
-	return adc_rdata.u16/16;	
+	//_start = 0;		//_sadc0.7  _start=0
+	//_start = 0;		//_sadc0.7	_start=0	
+	return adc_rdata.u16;
 }
-
-//u16 fun_Get_ADC_Key(u8 adc_channel)
-//{
-//	__16_type	adc_rdata;
-//	_sadc0 = 0B00111111;
-//	_sadc1 = 0B11101011;
-//	_adaccm = 0;	
-//	switch(adc_channel)
-//	{
-//		case 0:  _sadc0 &=0xf0;  _pcs05 =1 ;_pcs04 =1 ; break;	// pc2 an0
-//		case 1:  _sadc0 &=0xf1;  _pcs07 =1 ;_pcs06 =1 ; break;	// pc3 an1
-//		case 2:  _sadc0 &=0xf2;  _pcs01 =1 ;_pcs00 =1 ; break;	// pc0 an2
-//		case 3:  _sadc0 &=0xf3;  _pcs03 =1 ;_pcs02 =1 ; break;	// pc1 an3	
-//		case 4:  _sadc1 &=0x3f;  break;	// pgao2
-//		case 5:  _sadc1 &=0x5f;  break;	// vscf		
-//		case 6:  _sadc1 &=0x7f;  break;	// vscfr				
-//		case 7:  _sadc1 &=0x9f;  break;	// vbat		
-//	}
-//	_start = 0;
-//	_start = 1;
-//	_start = 0;	
-//	GCC_NOP();	
-//	while(_adbz != 0)
-//	{}
-//	
-//	adc_rdata.byte.byte0 = _sadol;
-//	adc_rdata.byte.byte1 = _sadoh;
-//	if(adc_rdata.u16 == 0)
-//	{
-//		GCC_NOP();	
-//	}
-//	return adc_rdata.u16/16;	
-//
-//}
-
 //___________________________________________________________________
 //Function: Disable ADC
 //   INPUT: 
@@ -99,9 +70,8 @@ u16 Get_ADC(u8 adc_channel)
 //___________________________________________________________________
 void Disable_ADC()
 {
-	_enadc = 0;		//_sadc0.5
+	_enadc = 0;		//_sadc0.5 disable adc
 }
-
 //___________________________________________________________________
 //Function: Test the ADC function with uart send
 //   INPUT: Get adc value

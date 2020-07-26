@@ -1,8 +1,8 @@
 //___________________________________________________________________
 //___________________________________________________________________
-// Description: Interupt ISR 
+// Description: ¨t²Îªì©l¤Æ¬ÛÃöµ{§Ç
 //  Copyright@: 2019 BY Louis Huang / https://github.com/louisopen/
-//   File Name: Interrupt.c’é
+//   File Name: Interrupt.c
 //Targer Board: MK8002D
 //    MCU Body: HT66F317 HT66F318-28ssop
 //      Author: Louis Huang
@@ -13,8 +13,8 @@
 //___________________________________________________________________
 #include "common.h"
 
-volatile	__byte_type	interrupt_flag;
-
+volatile __byte_type	interrupt_flag;
+u8 isr_temp0;
 //___________________________________________________________________
 //Function: INT0 ISR
 //NOTE	  :   
@@ -33,39 +33,50 @@ void __attribute((interrupt(0x04)))  INT0_ISR()		//for V3 of compiler
 //void INT1_ISR(void)
 void __attribute((interrupt(0x24)))  INT1_ISR()		//for V3 of compiler
 {
+
 }
 
 //___________________________________________________________________
 //Function: MuFunction0 ISR
-//NOTE	  : STM0 & PTM0 “æ?(TM0)  
+//NOTE	  : STM (ht66f317 66f318) & PTM (66f317)  
 //___________________________________________________________________
 //#pragma vector MuFunction0_ISR @ 0x0c				//for V2 of compiler
 //void MuFunction0_ISR(void)
 void __attribute((interrupt(0x0c)))  MuFunction0_ISR()	//for V3 of compiler
-{		
-	//_ptm0af = 0;
-}
-
-//___________________________________________________________________
-//Function: MuFunction1 ISR
-//NOTE	  : PTM1 & PTM2  
-//___________________________________________________________________
-//#pragma vector MuFunction1_ISR @ 0x10				//for V2 of compiler
-//void MuFunction1_ISR(void)
-void __attribute((interrupt(0x10)))  MuFunction1_ISR()	//for V3 of compiler
-{		
-	//_ptm0af = 0;
+{
+	/////// TimeModule0 on Mult-Function 0 ISR ////////////
+	if(_t0af)
+	{
+		if(toggle_buzzer==0)
+		{
+			toggle_buzzer=1;
+			Buzzer=1;	//_pb2=1;
+		}
+		else
+		{
+			toggle_buzzer=0;
+			Buzzer=0;	//_pb2=0;
+		}
+	}
+	_t0af=0;
 }
 
 //___________________________________________________________________
 //Function: MuFunction2 ISR
 //NOTE	  : LVD & EEPROM W
 //___________________________________________________________________
+//DEFINE_ISR(MuFunction2_ISR, 0x14)
 //#pragma vector MuFunction2_ISR @ 0x14				//for V2 of compiler
 //void MuFunction2_ISR(void)
 void __attribute((interrupt(0x14)))  MuFunction2_ISR()	//for V3 of compiler
 {		
 	//_ptm0af = 0;
+	if(_lvf)	//Low voltage detect. interrupt must enable _lve
+	{
+	}
+	if(_def)	//EEPROM interrupt must enable _dee
+	{
+	}
 }
 
 //___________________________________________________________________
@@ -76,6 +87,7 @@ void __attribute((interrupt(0x14)))  MuFunction2_ISR()	//for V3 of compiler
 //void ADC_ISR(void)
 void __attribute((interrupt(0x18)))  ADC_ISR()		//for V3 of compiler
 {
+
 }
 
 //___________________________________________________________________

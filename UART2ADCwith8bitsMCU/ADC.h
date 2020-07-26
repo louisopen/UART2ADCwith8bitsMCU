@@ -57,6 +57,9 @@ void TEST_ADC();
 #define AN5		5		//
 #define AN6		6		//
 #define AN7		7		//
+#define AVDD	8		//AN = AVDD
+#define AVDD2	9		//AN = AVDD/2
+#define AVDD4	10		//AN = AVDD/4
 #define SADC0_Default 0b00000000   // AN0
 
 //--------------_sadc1------------------
