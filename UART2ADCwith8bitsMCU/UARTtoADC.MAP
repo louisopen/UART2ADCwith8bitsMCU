@@ -28,170 +28,170 @@ Input Library File: C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x
      00h     0024h     0024h    0001h      CODE               @INT1_ISR_code (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
      00h     0028h     0028h    0001h      CODE               @I2C_ISR_code (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
      00h     002ch     002fh    0004h      CODE               @UART_ISR_code (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
-     00h     0030h     0041h    0012h      CODE               _main (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\MAIN.OBJ)
-     00h     0042h     0088h    0047h      CODE               _Get_ADC (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\ADC.OBJ)
-     00h     0089h     00a0h    0018h      CODE               _Read_EEPROM (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\EEPROM.OBJ)
-     00h     00a1h     00b8h    0018h      CODE               _Write_EEPROM (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\EEPROM.OBJ)
-     00h     00b9h     00e1h    0029h      CODE               _TEST_EEPROM (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\EEPROM.OBJ)
-     00h     00e2h     00efh    000eh      CODE               _MuFunction0_ISR (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
-     00h     00f0h     00f7h    0008h      CODE               _MuFunction2_ISR (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
-     00h     00f8h     00fch    0005h      CODE               _Timebase0_ISR (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
-     00h     00fdh     0101h    0005h      CODE               _Timebase1_ISR (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
-     00h     0102h     0115h    0014h      CODE               _Task_500ms (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
-     00h     0116h     0121h    000ch      CODE               _TimerInitial (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
-     00h     0122h     0127h    0006h      CODE               _ReadyToHalt (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
-     00h     0128h     012eh    0007h      CODE               _GPIO_Init (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
-     00h     012fh     0137h    0009h      CODE               _WDT_ResetInit (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
-     00h     0138h     0151h    001ah      CODE               _Ram_Init (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
-     00h     0152h     0160h    000fh      CODE               _PowerOn_Init (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
-     00h     0161h     0173h    0013h      CODE               _Uart_Init (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
-     00h     0174h     01d8h    0065h      CODE               _UART_ISR (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
-     00h     01d9h     0210h    0038h      CODE               _calc_crc (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
-     00h     0211h     0244h    0034h      CODE               _Buffer_Send06 (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
-     00h     0245h     027ah    0036h      CODE               _Buffer_Send03 (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
-     00h     027bh     02ffh    0085h      CODE               _Uart_RXD_Manage (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
-     00h     0300h     0309h    000ah      CODE               __DELAYX (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x\LIB\LIBHOLTEKGCC.LIB)
-     00h     030ah     030eh    0005h      CODE               _CROM2PROM (CROM2PROM)
-     00h     00a0h     00a1h    0002h      DATA     2.5       @HCCINIT0 (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
-     00h     00a2h     00a3h    0002h      DATA     5         @HCCINIT0 (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
-     00h     00a4h     00c1h    001eh      DATA     2.8667    @HCCINIT0 (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
-     00h     00c2h     00c2h    0001h      DATA     52        @data_ra (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x\LIB\LIBHOLTEKGCC.LIB)
-     00h     00c3h     00c3h    0001h      DATA     26        @data_rb (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x\LIB\LIBHOLTEKGCC.LIB)
-     00h     00c4h     00c4h    0001h      DATA     18        @data_rc (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x\LIB\LIBHOLTEKGCC.LIB)
-     00h     00c5h     00c5h    0001h      DATA     2         @data_rd (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x\LIB\LIBHOLTEKGCC.LIB)
-     00h     00c6h     00c6h    0001h      DATA     2         @data_re (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x\LIB\LIBHOLTEKGCC.LIB)
-     00h     00c7h     00c7h    0001h      DATA     2         @data_rf (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x\LIB\LIBHOLTEKGCC.LIB)
-     00h     00c8h     00c8h    0001h      DATA     2         @data_r10c (isr:ra~rh)
-     00h     00c9h     00c9h    0001h      DATA     2         @data_r20c (isr:ra~rh)
-     00h     00cah     00cah    0001h      DATA     2         @data_r114 (isr:ra~rh)
-     00h     00cbh     00cbh    0001h      DATA     2         @data_r214 (isr:ra~rh)
-     00h     00cch     00cch    0001h      DATA     2         @data_ra14 (isr:ra~rh)
-     00h     00cdh     00cdh    0001h      DATA     2         @data_r11c (isr:ra~rh)
-     00h     00ceh     00ceh    0001h      DATA     2         @data_r21c (isr:ra~rh)
-     00h     00cfh     00cfh    0001h      DATA     2         @data_r120 (isr:ra~rh)
-     00h     00d0h     00d0h    0001h      DATA     2         @data_r220 (isr:ra~rh)
-     00h     00d1h     00d1h    0001h      DATA     2         @data_r12c (isr:ra~rh)
-     00h     00d2h     00d2h    0001h      DATA     2         @data_r22c (isr:ra~rh)
-     00h     00d3h     00d3h    0001h      DATA     2         @data_r32c (isr:ra~rh)
-     00h     00d4h     00d4h    0001h      DATA     2         @data_r42c (isr:ra~rh)
-     00h     00d5h     00d5h    0001h      DATA     2         @data_r52c (isr:ra~rh)
-     00h     00d6h     00d6h    0001h      DATA     2         @data_r62c (isr:ra~rh)
-     00h     00d7h     00d7h    0001h      DATA     2         @data_r72c (isr:ra~rh)
-     00h     00d8h     00d8h    0001h      DATA     6         @data_ra2c (isr:ra~rh)
+     00h     0030h     0045h    0016h      CODE               _main (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\MAIN.OBJ)
+     00h     0046h     008ch    0047h      CODE               _Get_ADC (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\ADC.OBJ)
+     00h     008dh     00a4h    0018h      CODE               _Read_EEPROM (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\EEPROM.OBJ)
+     00h     00a5h     00bch    0018h      CODE               _Write_EEPROM (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\EEPROM.OBJ)
+     00h     00bdh     00cah    000eh      CODE               _MuFunction0_ISR (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
+     00h     00cbh     00d2h    0008h      CODE               _MuFunction2_ISR (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
+     00h     00d3h     00d7h    0005h      CODE               _Timebase0_ISR (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
+     00h     00d8h     00dch    0005h      CODE               _Timebase1_ISR (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
+     00h     00ddh     00f0h    0014h      CODE               _Task_500ms (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
+     00h     00f1h     00fch    000ch      CODE               _TimerInitial (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
+     00h     00fdh     0102h    0006h      CODE               _ReadyToHalt (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
+     00h     0103h     0109h    0007h      CODE               _GPIO_Init (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
+     00h     010ah     0112h    0009h      CODE               _WDT_ResetInit (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
+     00h     0113h     012ch    001ah      CODE               _Ram_Init (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
+     00h     012dh     013bh    000fh      CODE               _PowerOn_Init (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
+     00h     013ch     014eh    0013h      CODE               _Uart_Init (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
+     00h     014fh     01b3h    0065h      CODE               _UART_ISR (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
+     00h     01b4h     01ebh    0038h      CODE               _calc_crc (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
+     00h     01ech     021fh    0034h      CODE               _Buffer_Send06 (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
+     00h     0220h     0255h    0036h      CODE               _Buffer_Send03 (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
+     00h     0256h     02dah    0085h      CODE               _Uart_RXD_Manage (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
+     00h     02dbh     02e4h    000ah      CODE               __DELAYX (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x\LIB\LIBHOLTEKGCC.LIB)
+     00h     02e5h     02e9h    0005h      CODE               _CROM2PROM (CROM2PROM)
+     00h     00a0h     00a1h    0002h      DATA     1         @HCCINIT0 (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\MAIN.OBJ)
+     00h     00a2h     00a3h    0002h      DATA     2.5       @HCCINIT0 (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
+     00h     00a4h     00a5h    0002h      DATA     5         @HCCINIT0 (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
+     00h     00a6h     00c3h    001eh      DATA     2.8667    @HCCINIT0 (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
+     00h     00c4h     00c4h    0001h      DATA     53        @data_ra (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x\LIB\LIBHOLTEKGCC.LIB)
+     00h     00c5h     00c5h    0001h      DATA     27        @data_rb (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x\LIB\LIBHOLTEKGCC.LIB)
+     00h     00c6h     00c6h    0001h      DATA     18        @data_rc (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x\LIB\LIBHOLTEKGCC.LIB)
+     00h     00c7h     00c7h    0001h      DATA     2         @data_rd (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x\LIB\LIBHOLTEKGCC.LIB)
+     00h     00c8h     00c8h    0001h      DATA     2         @data_re (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x\LIB\LIBHOLTEKGCC.LIB)
+     00h     00c9h     00c9h    0001h      DATA     2         @data_rf (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x\LIB\LIBHOLTEKGCC.LIB)
+     00h     00cah     00cah    0001h      DATA     2         @data_r10c (isr:ra~rh)
+     00h     00cbh     00cbh    0001h      DATA     2         @data_r20c (isr:ra~rh)
+     00h     00cch     00cch    0001h      DATA     2         @data_r114 (isr:ra~rh)
+     00h     00cdh     00cdh    0001h      DATA     2         @data_r214 (isr:ra~rh)
+     00h     00ceh     00ceh    0001h      DATA     2         @data_ra14 (isr:ra~rh)
+     00h     00cfh     00cfh    0001h      DATA     2         @data_r11c (isr:ra~rh)
+     00h     00d0h     00d0h    0001h      DATA     2         @data_r21c (isr:ra~rh)
+     00h     00d1h     00d1h    0001h      DATA     2         @data_r120 (isr:ra~rh)
+     00h     00d2h     00d2h    0001h      DATA     2         @data_r220 (isr:ra~rh)
+     00h     00d3h     00d3h    0001h      DATA     2         @data_r12c (isr:ra~rh)
+     00h     00d4h     00d4h    0001h      DATA     2         @data_r22c (isr:ra~rh)
+     00h     00d5h     00d5h    0001h      DATA     2         @data_r32c (isr:ra~rh)
+     00h     00d6h     00d6h    0001h      DATA     2         @data_r42c (isr:ra~rh)
+     00h     00d7h     00d7h    0001h      DATA     2         @data_r52c (isr:ra~rh)
+     00h     00d8h     00d8h    0001h      DATA     2         @data_r62c (isr:ra~rh)
+     00h     00d9h     00d9h    0001h      DATA     2         @data_r72c (isr:ra~rh)
+     00h     00dah     00dah    0001h      DATA     6         @data_ra2c (isr:ra~rh)
 
      Local Sections
 
      Bank    Start     End      Length     Class    AvgIns    Name
-     00h     00e2h     00e2h    0000h      LOCAL    0         @dummy (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\MAIN.OBJ)
-     00h     00e2h     00e2h    0000h      LOCAL    0         _main (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\MAIN.OBJ)
-     00h     00d9h     00d9h    0000h      LOCAL    0         _PowerOn_Init (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
-     00h     00d9h     00d9h    0000h      LOCAL    0         _Ram_Init (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
-     00h     00d9h     00d9h    0000h      LOCAL    0         _WDT_ResetInit (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
-     00h     00d9h     00d9h    0000h      LOCAL    0         _GPIO_Init (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
-     00h     00d9h     00d9h    0000h      LOCAL    0         _Uart_Init (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
-     00h     00d9h     00d9h    0000h      LOCAL    0         _TimerInitial (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
-     00h     00dbh     00deh    0004h      LOCAL    4.25      _TEST_EEPROM (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\EEPROM.OBJ)
-     00h     00d9h     00dah    0002h      LOCAL    3         _Write_EEPROM (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\EEPROM.OBJ)
-     00h     00d9h     00d9h    0001h      LOCAL    2         _Read_EEPROM (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\EEPROM.OBJ)
-     00h     00ddh     00e1h    0005h      LOCAL    4.4       _Uart_RXD_Manage (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
-     00h     00dch     00dch    0001h      LOCAL    2         _Buffer_Send06 (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
-     00h     00d9h     00dbh    0003h      LOCAL    5.3333    _calc_crc (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
-     00h     00d9h     00d9h    0000h      LOCAL    0         _Crom2Prom (CROM2PROM)
-     00h     00d9h     00d9h    0001h      LOCAL    6         _Get_ADC (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\ADC.OBJ)
-     00h     00d9h     00d9h    0000h      LOCAL    0         __DELAYX (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x\LIB\LIBHOLTEKGCC.LIB)
-     00h     00dch     00dch    0001h      LOCAL    3         _Buffer_Send03 (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
-     00h     00d9h     00d9h    0000h      LOCAL    0         _ReadyToHalt (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
-     00h     00d9h     00d9h    0000h      LOCAL    0         _Disable_ADC (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\ADC.OBJ)
-     00h     00d9h     00d9h    0000h      LOCAL    0         _Uart_off (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
-     00h     00d9h     00d9h    0000h      LOCAL    0         _Task_500ms (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
-     00h     00d9h     00d9h    0000h      LOCAL    0         _Key_Scan (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
-     00h     00d9h     00d9h    0000h      LOCAL    0         @dummy12 (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
-     00h     00d9h     00d9h    0000h      LOCAL    0         _MuFunction0_ISR (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
-     00h     00d9h     00d9h    0000h      LOCAL    0         @dummy20 (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
-     00h     00d9h     00d9h    0000h      LOCAL    0         _MuFunction2_ISR (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
-     00h     00d9h     00d9h    0000h      LOCAL    0         @dummy28 (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
-     00h     00d9h     00d9h    0000h      LOCAL    0         _Timebase0_ISR (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
-     00h     00d9h     00d9h    0000h      LOCAL    0         @dummy32 (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
-     00h     00d9h     00d9h    0000h      LOCAL    0         _Timebase1_ISR (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
-     00h     00d9h     00d9h    0000h      LOCAL    0         @dummy44 (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
-     00h     00d9h     00d9h    0000h      LOCAL    0         _UART_ISR (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
+     00h     00e4h     00e4h    0000h      LOCAL    0         @dummy (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\MAIN.OBJ)
+     00h     00e4h     00e4h    0000h      LOCAL    0         _main (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\MAIN.OBJ)
+     00h     00dbh     00dbh    0000h      LOCAL    0         _PowerOn_Init (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
+     00h     00dbh     00dbh    0000h      LOCAL    0         _Ram_Init (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
+     00h     00dbh     00dbh    0000h      LOCAL    0         _WDT_ResetInit (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
+     00h     00dbh     00dbh    0000h      LOCAL    0         _GPIO_Init (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
+     00h     00dbh     00dbh    0000h      LOCAL    0         _Uart_Init (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
+     00h     00dbh     00dbh    0000h      LOCAL    0         _TimerInitial (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
+     00h     00dbh     00dbh    0001h      LOCAL    6         _Get_ADC (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\ADC.OBJ)
+     00h     00dbh     00dbh    0000h      LOCAL    0         __DELAYX (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x\LIB\LIBHOLTEKGCC.LIB)
+     00h     00dfh     00e3h    0005h      LOCAL    4.4       _Uart_RXD_Manage (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
+     00h     00dbh     00dch    0002h      LOCAL    3         _Write_EEPROM (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\EEPROM.OBJ)
+     00h     00deh     00deh    0001h      LOCAL    2         _Buffer_Send06 (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
+     00h     00dbh     00ddh    0003h      LOCAL    5.3333    _calc_crc (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
+     00h     00dbh     00dbh    0000h      LOCAL    0         _Crom2Prom (CROM2PROM)
+     00h     00dbh     00dbh    0001h      LOCAL    2         _Read_EEPROM (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\EEPROM.OBJ)
+     00h     00deh     00deh    0001h      LOCAL    3         _Buffer_Send03 (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
+     00h     00dbh     00dbh    0000h      LOCAL    0         _ReadyToHalt (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
+     00h     00dbh     00dbh    0000h      LOCAL    0         _Disable_ADC (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\ADC.OBJ)
+     00h     00dbh     00dbh    0000h      LOCAL    0         _Uart_off (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
+     00h     00dbh     00dbh    0000h      LOCAL    0         _Task_500ms (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
+     00h     00dbh     00dbh    0000h      LOCAL    0         _Key_Scan (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\SYS_INIT.OBJ)
+     00h     00dbh     00dbh    0000h      LOCAL    0         @dummy12 (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
+     00h     00dbh     00dbh    0000h      LOCAL    0         _MuFunction0_ISR (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
+     00h     00dbh     00dbh    0000h      LOCAL    0         @dummy20 (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
+     00h     00dbh     00dbh    0000h      LOCAL    0         _MuFunction2_ISR (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
+     00h     00dbh     00dbh    0000h      LOCAL    0         @dummy28 (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
+     00h     00dbh     00dbh    0000h      LOCAL    0         _Timebase0_ISR (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
+     00h     00dbh     00dbh    0000h      LOCAL    0         @dummy32 (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
+     00h     00dbh     00dbh    0000h      LOCAL    0         _Timebase1_ISR (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\INTERRUPT.OBJ)
+     00h     00dbh     00dbh    0000h      LOCAL    0         @dummy44 (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
+     00h     00dbh     00dbh    0000h      LOCAL    0         _UART_ISR (C:\ChipsGarden\醇法\MK8000\MK8000-Power PCB\UART2ADCwith8bitsMCU\UART2ADCwith8bitsMCU\UART.OBJ)
 
      Public Symbols Information
      Address            Public by Name
      0018h              _ADC_ISR
-     0245h              _Buffer_Send03
-     0211h              _Buffer_Send06
+     0220h              _Buffer_Send03
+     01ech              _Buffer_Send06
      0008h              _Comparator_ISR
-     030bh              _Crom2Prom
-     030ah              _Crom2PromNext
+     02e6h              _Crom2Prom
+     02e5h              _Crom2PromNext
      0002h              _Disable_ADC
-     0128h              _GPIO_Init
-     0042h              _Get_ADC
+     0103h              _GPIO_Init
+     0046h              _Get_ADC
      0028h              _I2C_ISR
      0004h              _INT0_ISR
      0024h              _INT1_ISR
      0005h              _Key_Scan
-     00e2h              _MuFunction0_ISR
-     00f0h              _MuFunction2_ISR
-     0152h              _PowerOn_Init
-     0138h              _Ram_Init
-     0089h              _Read_EEPROM
-     0122h              _ReadyToHalt
-     00b9h              _TEST_EEPROM
-     0102h              _Task_500ms
-     00f8h              _Timebase0_ISR
-     00fdh              _Timebase1_ISR
-     0116h              _TimerInitial
-     0174h              _UART_ISR
-     0161h              _Uart_Init
-     027bh              _Uart_RXD_Manage
+     00bdh              _MuFunction0_ISR
+     00cbh              _MuFunction2_ISR
+     012dh              _PowerOn_Init
+     0113h              _Ram_Init
+     008dh              _Read_EEPROM
+     00fdh              _ReadyToHalt
+     00ddh              _Task_500ms
+     00d3h              _Timebase0_ISR
+     00d8h              _Timebase1_ISR
+     00f1h              _TimerInitial
+     014fh              _UART_ISR
+     013ch              _Uart_Init
+     0256h              _Uart_RXD_Manage
      0010h              _Uart_off
-     012fh              _WDT_ResetInit
-     00a1h              _Write_EEPROM
-     00dah              _Write_EEPROM_2
-     0306h              __DELAYX0
-     0305h              __DELAYX1
-     0304h              __DELAYX2
-     0303h              __DELAYX3
-     0302h              __DELAYX4
-     0301h              __DELAYX5
-     0300h              __DELAYX6
-     00a7h              _array_uart_rxbuff
-     00afh              _array_uart_txbuff
-     01d9h              _calc_crc
-     00a3h              _count_2sec
-     00a1h              _interrupt_flag
-     00a0h              _isr_temp0
+     010ah              _WDT_ResetInit
+     00a5h              _Write_EEPROM
+     00dch              _Write_EEPROM_2
+     02e1h              __DELAYX0
+     02e0h              __DELAYX1
+     02dfh              __DELAYX2
+     02deh              __DELAYX3
+     02ddh              __DELAYX4
+     02dch              __DELAYX5
+     02dbh              __DELAYX6
+     00a0h              _adc_value
+     00a9h              _array_uart_rxbuff
+     00b1h              _array_uart_txbuff
+     01b4h              _calc_crc
+     00ddh              _calc_crc_2
+     00a5h              _count_2sec
+     00a3h              _interrupt_flag
+     00a2h              _isr_temp0
      0030h              _main
-     00a4h              _reg_crc
-     00c0h              _rx_guide
-     00a2h              _system_flag
-     00bfh              _tx_guide
-     00c1h              _tx_index
-     00a6h              _uart_flag
-     00c8h              r10c
-     00cah              r114
-     00cdh              r11c
-     00cfh              r120
-     00d1h              r12c
-     00c9h              r20c
-     00cbh              r214
-     00ceh              r21c
-     00d0h              r220
-     00d2h              r22c
-     00d3h              r32c
-     00d4h              r42c
-     00d5h              r52c
-     00d6h              r62c
-     00d7h              r72c
-     00c2h              ra
-     00cch              ra14
-     00d8h              ra2c
-     00c3h              rb
-     00c4h              rc
-     00c5h              rd
-     00c6h              re
-     00c7h              rf
+     00a6h              _reg_crc
+     00c2h              _rx_guide
+     00a4h              _system_flag
+     00c1h              _tx_guide
+     00c3h              _tx_index
+     00a8h              _uart_flag
+     00cah              r10c
+     00cch              r114
+     00cfh              r11c
+     00d1h              r120
+     00d3h              r12c
+     00cbh              r20c
+     00cdh              r214
+     00d0h              r21c
+     00d2h              r220
+     00d4h              r22c
+     00d5h              r32c
+     00d6h              r42c
+     00d7h              r52c
+     00d8h              r62c
+     00d9h              r72c
+     00c4h              ra
+     00ceh              ra14
+     00dah              ra2c
+     00c5h              rb
+     00c6h              rc
+     00c7h              rd
+     00c8h              re
+     00c9h              rf
 
      Address            Public by Value
      0002h              _Disable_ADC
@@ -203,86 +203,88 @@ Input Library File: C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x
      0024h              _INT1_ISR
      0028h              _I2C_ISR
      0030h              _main
-     0042h              _Get_ADC
-     0089h              _Read_EEPROM
-     00a0h              _isr_temp0
-     00a1h              _Write_EEPROM
-     00a1h              _interrupt_flag
-     00a2h              _system_flag
-     00a3h              _count_2sec
-     00a4h              _reg_crc
-     00a6h              _uart_flag
-     00a7h              _array_uart_rxbuff
-     00afh              _array_uart_txbuff
-     00b9h              _TEST_EEPROM
-     00bfh              _tx_guide
-     00c0h              _rx_guide
-     00c1h              _tx_index
-     00c2h              ra
-     00c3h              rb
-     00c4h              rc
-     00c5h              rd
-     00c6h              re
-     00c7h              rf
-     00c8h              r10c
-     00c9h              r20c
-     00cah              r114
-     00cbh              r214
-     00cch              ra14
-     00cdh              r11c
-     00ceh              r21c
-     00cfh              r120
-     00d0h              r220
-     00d1h              r12c
-     00d2h              r22c
-     00d3h              r32c
-     00d4h              r42c
-     00d5h              r52c
-     00d6h              r62c
-     00d7h              r72c
-     00d8h              ra2c
-     00dah              _Write_EEPROM_2
-     00e2h              _MuFunction0_ISR
-     00f0h              _MuFunction2_ISR
-     00f8h              _Timebase0_ISR
-     00fdh              _Timebase1_ISR
-     0102h              _Task_500ms
-     0116h              _TimerInitial
-     0122h              _ReadyToHalt
-     0128h              _GPIO_Init
-     012fh              _WDT_ResetInit
-     0138h              _Ram_Init
-     0152h              _PowerOn_Init
-     0161h              _Uart_Init
-     0174h              _UART_ISR
-     01d9h              _calc_crc
-     0211h              _Buffer_Send06
-     0245h              _Buffer_Send03
-     027bh              _Uart_RXD_Manage
-     0300h              __DELAYX6
-     0301h              __DELAYX5
-     0302h              __DELAYX4
-     0303h              __DELAYX3
-     0304h              __DELAYX2
-     0305h              __DELAYX1
-     0306h              __DELAYX0
-     030ah              _Crom2PromNext
-     030bh              _Crom2Prom
+     0046h              _Get_ADC
+     008dh              _Read_EEPROM
+     00a0h              _adc_value
+     00a2h              _isr_temp0
+     00a3h              _interrupt_flag
+     00a4h              _system_flag
+     00a5h              _Write_EEPROM
+     00a5h              _count_2sec
+     00a6h              _reg_crc
+     00a8h              _uart_flag
+     00a9h              _array_uart_rxbuff
+     00b1h              _array_uart_txbuff
+     00bdh              _MuFunction0_ISR
+     00c1h              _tx_guide
+     00c2h              _rx_guide
+     00c3h              _tx_index
+     00c4h              ra
+     00c5h              rb
+     00c6h              rc
+     00c7h              rd
+     00c8h              re
+     00c9h              rf
+     00cah              r10c
+     00cbh              _MuFunction2_ISR
+     00cbh              r20c
+     00cch              r114
+     00cdh              r214
+     00ceh              ra14
+     00cfh              r11c
+     00d0h              r21c
+     00d1h              r120
+     00d2h              r220
+     00d3h              r12c
+     00d3h              _Timebase0_ISR
+     00d4h              r22c
+     00d5h              r32c
+     00d6h              r42c
+     00d7h              r52c
+     00d8h              r62c
+     00d8h              _Timebase1_ISR
+     00d9h              r72c
+     00dah              ra2c
+     00dch              _Write_EEPROM_2
+     00ddh              _calc_crc_2
+     00ddh              _Task_500ms
+     00f1h              _TimerInitial
+     00fdh              _ReadyToHalt
+     0103h              _GPIO_Init
+     010ah              _WDT_ResetInit
+     0113h              _Ram_Init
+     012dh              _PowerOn_Init
+     013ch              _Uart_Init
+     014fh              _UART_ISR
+     01b4h              _calc_crc
+     01ech              _Buffer_Send06
+     0220h              _Buffer_Send03
+     0256h              _Uart_RXD_Manage
+     02dbh              __DELAYX6
+     02dch              __DELAYX5
+     02ddh              __DELAYX4
+     02deh              __DELAYX3
+     02dfh              __DELAYX2
+     02e0h              __DELAYX1
+     02e1h              __DELAYX0
+     02e5h              _Crom2PromNext
+     02e6h              _Crom2Prom
 
 
 ROM Usage Statistics
      Size      Used     Percentage
-     1000h     0302h    18%
+     1000h     02ddh    17%
 
 RAM Usage Statistics
     Bank      Size      Used     Percentage
-     00h       0060h     0042h    68%
+     00h       0060h     0044h    70%
      01h       0060h     0010h    16%
-     Total     00c0h     0052h    42%
+     Total     00c0h     0054h    43%
 
 Use Stack Count
 _main: 4
 _TEST_ADC: 2
+_TEST_EEPROM: 1
 _MuFunction0_ISR: 0
 _MuFunction2_ISR: 0
 _Timebase0_ISR: 0
@@ -299,9 +301,8 @@ Call Tree
                 _GPIO_Init (2)
                 _Uart_Init (2)
                 _TimerInitial (2)
-            _TEST_EEPROM (1)
-                _Write_EEPROM (2)
-                _Read_EEPROM (2)
+            _Get_ADC (1)
+                __DELAYX (2)
             _Uart_RXD_Manage (1)
                 _Write_EEPROM (2)
                 _Buffer_Send06 (2)
@@ -322,6 +323,9 @@ Call Tree
     _TEST_ADC
         _Get_ADC (0)
             __DELAYX (1)
+    _TEST_EEPROM
+        _Write_EEPROM (0)
+        _Read_EEPROM (0)
     @dummy12
         _MuFunction0_ISR (0)
     @dummy20

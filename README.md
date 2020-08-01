@@ -4,7 +4,8 @@ HT-IDE3000 V8.02  HT66F317/HT66F318 28ssop
 Project Option可選擇:HXT,HIRC8M,HIRC12M,HIRC16M,LXT,LIRC 
 
 Useing HT66F318 UART access to GPIO, LED matrix, EEPROM, ADC, I2C...(Same RS-485 driver)
-此專案利用PC軟件下達指令以存取MCU內部的EEPROM(64bytes), ADC(10bits), 後還可以持續增加I2C(Hi resolution adc), SPI(OLED display) 都透過UART 9600,N,8,1 協議格式參照RS-485通訊協議格式.
+此專案利用PC軟件下達指令以存取MCU內部的EEPROM(64bytes), ADC(10bits), 
+後續還可以持續增加I2C(Hi resolution adc), SPI(OLED display) 都透過UART 9600,N,8,1 協議格式參照RS-485通訊協議格式.
 
 ADC設置直接透過AN0~AN7讀取外部輸入,或AVDD,AVDD1/2,AVDD1/4讀取內部輸入.
 
@@ -31,8 +32,9 @@ MCU return設計最大每次讀取四組(8byte) 所以反饋時: 44 03 08 00 01 02 03 04 05 06 
 * UART Formate(Write to MCU): 44 06 00 0A EE FF A0 0A   #寫入EEPROM位址0x000A,資料為0xEEFF
 MCU return: 44 06 00 0A EE FF CRC CRC
 
-* UART Formate(Get from MCU): 44 03 01 00 00 01 A0 0A   #讀取ADC通道0,1組(共計2個bytes), 有8通道可以讀取(an0 to an7)
-MCU return adc value (an0 to an7): 44 03 02 03 FF CRC CRC
+* UART Formate(Get from MCU): 44 03 01 08 00 01 A0 0A   #讀取ADC通道8(AVDD/2), 1組2個bytes, 有10通道可以讀取(an0~an7,internal)
+MCU return adc value (an0 to an7): 44 03 02 FF 03 CRC CRC
+MCU return adc value (an0 to an7): 44 03 02 08 02 F3 8A
 
 
 #### Other applications:

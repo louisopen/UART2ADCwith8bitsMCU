@@ -2,7 +2,7 @@
 //___________________________________________________________________
 // Description: Main program
 //  Copyright@: 2019 BY Louis Huang / https://github.com/louisopen/
-//   File Name: UARTtoEEPROM.c
+//   File Name: main of UARTtoADC
 //Targer Board: MK8002D 
 //    MCU Body: HT66F318-28ssop
 //      Author: Louis Huang
@@ -13,7 +13,7 @@
 //___________________________________________________________________
 #include "common.h"
 
-//__16_type	adc_value;
+__16_type	adc_value;
 //___________________________________________________________________
 //___________________________________________________________________
 //___________________________________________________________________
@@ -29,8 +29,8 @@ void main()
 		WDT_ResetInit();	
 	}
 	//sleep_request=1;					//test sleep request
-	//adc_value.u16 = Get_ADC(AVDD2);	//test Analog AN0(PB0)
-	TEST_EEPROM(EEPROM_BUFFER_MAX);		//test fill 0,1,2,3,~
+	adc_value.u16 = Get_ADC(AVDD2);	//test Analog AN0(PB0)
+	//TEST_EEPROM(EEPROM_BUFFER_MAX);		//test fill 0,1,2,3,~
 	//Uart_TXD_Send(0xabcd);			//test for TXD single 
 	while(1)	//like Arduino loop() for main loop
 	{	
