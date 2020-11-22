@@ -1,14 +1,22 @@
-## â€»UARTtoADCwith8bitsMCU
-Host PC or Raspberry Pi... UART port access GPIO, LED matrix, EEPROM, ADC, I2C...(Same RS-485 port) via MCU HT66F318 UART port. baudrate 9600,n,8,1 <br>
-æ­¤å°ˆæ¡ˆåˆ©ç”¨ä¸»æ©ŸPCè»Ÿä»¶ä¸‹é”UARTæŒ‡ä»¤ä»¥å­˜å–MCUå…§éƒ¨çš„EEPROM(64bytes), ADC(12bits), å¾ŒçºŒé‚„å¯ä»¥æŒçºŒå¢åŠ I2C(Hi resolution adc), SPI(OLED display) éƒ½é€éUART port<br>
+## ¡°UARTtoADCwith8bitsMCU
+* Host PC or Raspberry Pi... UART port access GPIO, LED matrix, EEPROM, ADC, I2C...(Same RS-485 port) via MCU HT66F318 UART port. baudrate 9600,n,8,1 <br>
+¦¹±M®×§Q¥Î¥D¾÷PC³n¥ó¤U¹FUART«ü¥O¥H¦s¨úMCU¤º³¡ªºEEPROM(64bytes), ADC(12bits), «áÄòÁÙ¥i¥H«ùÄò¼W¥[I2C(Hi resolution adc), SPI(OLED display) ³£³z¹LUART port<br>
+* MCU ADC³]¸mª½±µ³z¹LAN0~AN7Åª¨ú¥~³¡¿é¤J,©ÎAVDD,AVDD1/2,AVDD1/4Åª¨ú¤º³¡¿é¤J<br>
 
-Baudrate: 9600,N,8,1 (å”è­°æ ¼å¼åƒç…§RS-485é€šè¨Šå”è­°æ ¼å¼)<br>
-MCU ADCè¨­ç½®ç›´æ¥é€éAN0~AN7è®€å–å¤–éƒ¨è¼¸å…¥,æˆ–AVDD,AVDD1/2,AVDD1/4è®€å–å…§éƒ¨è¼¸å…¥<br>
-Project Option: HXT; å¯é¸é …é‚„æœ‰(å°å¿ƒä½¿ç”¨)HXT,HIRC8M,HIRC12M,HIRC16M,LXT,LIRC<br>
+* Project Option:<br>
+HXT (External 8MHz X'tal); ¥i¿ï¶µ¦³:HXT(400K~16Mhz),HIRC8M,HIRC12M,HIRC16M<br>
+LICR (Low speed internal RC for TB0/TB1); ¥i¿ï¶µ¦³:LXT(32.768Khz),LIRC(32Khz)<br>
 
-HT66F318 28ssop with HT-IDE3000 V8.02 & e-Link & e-WriterPro<br>
-[HT66F318 Document](https://www.holtek.com.tw/search?key=ht66F318)<br>
-[IDE3000 & ICE & Writer](https://www.holtek.com.tw/ice)<br>
+* UART Baudrate: 9600,n,8,1 (¨óÄ³®æ¦¡°Ñ·ÓRS-485³q°T¨óÄ³®æ¦¡)<br>
+
+* TB0,1 enable LIRC interrupt for 16ms, 0.514sec<br>
+
+* TM0 enable HXT interrupt for 200us<br>
+
+* HT-IDE3000 HT66F317/HT66F318 28ssop with HT-IDE3000 & e-Link & e-WriterPro<br>
+¤å¥ó[HT66F318 Document](https://www.holtek.com.tw/search?key=ht66F318)<br>
+¼ÒÀÀ&°£¿ùDevelopment & Debug[IDE3000 & ICE](https://www.holtek.com.tw/web/guest/ice)<br>
+¿N¤J¾¹Progrmming & writer[HOPE3000 & e-WriterPro](https://www.holtek.com.tw/web/guest/programmer)<br>
 
 ### Relevant information
 * HT-IDE3000 V8.02
@@ -20,20 +28,21 @@ HT66F318 28ssop with HT-IDE3000 V8.02 & e-Link & e-WriterPro<br>
 ![Image](ProjectOption2.jpg)
 ![Image](ProjectOption3.jpg)
 ![Image](ProjectOption4.jpg)
-* HT66F318 28ssop Diagram
+* HT66F318 28ssop Schematic Diagram
 ![Image](CircuitDiagram.jpg)
+![Image](MCUdiagram.jpg)
 
 ### How to test or used
-åˆ©ç”¨PCé€šè¨Šè»Ÿä»¶åšç‚ºä¸»å‹•å·¥å…·, å”è­°(9600,n,8,1), æ ¼å¼æ¯”ç…§RS-485æ ¼å¼(PCæŒ‡ä»¤CRCç”¨ A0 0Aä»£æ›¿, MCUåé¥‹çš„ç‚ºCRC-16)
+§Q¥ÎPC³q°T³n¥ó°µ¬°¥D°Ê¤u¨ã, ¨óÄ³(9600,n,8,1), ®æ¦¡¤ñ·ÓRS-485®æ¦¡(PC«ü¥OCRC¥Î A0 0A¥N´À, MCU¤ÏõXªº¬°CRC-16)
 
 * For Example: 
-* UART Formate(Get from MCU): 44 03 00 00 00 04 A0 0A   #è®€å–EEPROMä½å€0x0000,4çµ„(å…±è¨ˆ8å€‹bytes)
-MCU returnè¨­è¨ˆæœ€å¤§æ¯æ¬¡è®€å–å››çµ„(8byte) æ‰€ä»¥åé¥‹æ™‚: 44 03 08 00 01 02 03 04 05 06 07 CRC CRC
+* UART Formate(Get from MCU): 44 03 00 00 00 04 A0 0A   #Åª¨úEEPROM¦ì§}0x0000,4²Õ(¦@­p8­Óbytes)
+MCU return³]­p³Ì¤j¨C¦¸Åª¨ú¥|²Õ(8byte) ©Ò¥H¤ÏõX®É: 44 03 08 00 01 02 03 04 05 06 07 CRC CRC
 
-* UART Formate(Write to MCU): 44 06 00 0A EE FF A0 0A   #å¯«å…¥EEPROMä½å€0x000A,è³‡æ–™ç‚º0xEEFF
+* UART Formate(Write to MCU): 44 06 00 0A EE FF A0 0A   #¼g¤JEEPROM¦ì§}0x000A,¸ê®Æ¬°0xEEFF
 MCU return: 44 06 00 0A EE FF CRC CRC
 
-* UART Formate(Get from MCU): 44 03 01 08 00 01 A0 0A   #è®€å–ADCé€šé“8(AVDD/2), 1çµ„2å€‹bytes, æœ‰10é€šé“å¯ä»¥è®€å–(an0~an7,internal)
+* UART Formate(Get from MCU): 44 03 01 08 00 01 A0 0A   #Åª¨úADC³q¹D8(AVDD/2), 1²Õ2­Óbytes, ¦³10³q¹D¥i¥HÅª¨ú(an0~an7,internal)
 MCU return adc value (an0 to an7): 44 03 02 FF 03 CRC CRC
 MCU return adc value (an0 to an7): 44 03 02 08 02 F3 8A
 

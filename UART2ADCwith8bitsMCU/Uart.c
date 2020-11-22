@@ -33,6 +33,7 @@
 //#define		BRGData        				25		  //8Mhz  Baud=19200,BRGH=1,N=25 
 #define		BRGData        				51		  //8Mhz  Baud=9600,BRGH=1,N=51 
 
+unsigned char	rx_watchdog;
 unsigned char	tx_index;
 volatile	u8	rx_guide;
 volatile	u8	tx_guide;
@@ -217,6 +218,15 @@ void Uart_RXD_Manage(void)
 			}					
 		}
 		rx_guide = 0;
+	}
+	else
+	{
+		if(rx_watchdog>6)		//16msx6=96ms
+		{
+			rx_watchdog=0;		//Clear time out
+			rx_guide = 0;		//RXD index clear
+			//_ucr2 = UCR2Data2;	//Why ?
+		}
 	}
 }
 //___________________________________________________________________

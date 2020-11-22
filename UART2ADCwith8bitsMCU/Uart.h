@@ -16,6 +16,7 @@
 
 #define	RX_DATA_MAX		8
 #define	TX_DATA_MAX		16
+extern unsigned char	rx_watchdog;
 //extern	unsigned char 	tx_index;
 extern	volatile	u8	rx_guide;
 extern	volatile	u8	tx_guide;

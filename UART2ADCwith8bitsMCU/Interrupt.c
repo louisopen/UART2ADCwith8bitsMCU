@@ -99,6 +99,7 @@ void __attribute((interrupt(0x18)))  ADC_ISR()		//for V3 of compiler
 void __attribute((interrupt(0x1c)))  Timebase0_ISR()	//for V3 of compiler
 { 
 	TB0_int_flag=1;
+	rx_watchdog++;			//For UART RX watchdog.
 }
 
 //___________________________________________________________________
