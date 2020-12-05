@@ -14,9 +14,9 @@
 #ifndef _ADC_H_
 #define _ADC_H_
 
-u16 Get_ADC(u8 lu8c_adc_channel);
-void Disable_ADC();
-void TEST_ADC();
+extern u16 Get_ADC(u8 lu8c_adc_channel);
+extern void Disable_ADC();
+extern void TEST_ADC();
   
 //--------------_sadc0------------------
 //  ______________________________________________________________________________
